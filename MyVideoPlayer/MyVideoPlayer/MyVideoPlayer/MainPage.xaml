@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MyVideoPlayer"
+             xmlns:myplayer="clr-namespace:Plugin.MediaManager.Forms;assembly=Plugin.MediaManager.Forms"
+             x:Class="MyVideoPlayer.MainPage">
+    <StackLayout >
+        <myplayer:VideoView x:Name="MyVideoView"
+                            AspectMode="AspectFit"
+                         WidthRequest="250"
+                         HeightRequest="250"/>
+        <Grid Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.1*"/>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition Width="0.1*"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Source="play.png"
+                         x:Name="btnplay"
+                         HeightRequest="25"
+                         WidthRequest="25"
+                         Clicked="ButtonPlay_Clicked"
+                         Grid.Column="0"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Start"/>
+            <ImageButton Source="pause.png"
+                         x:Name="btnpause"
+                         HeightRequest="25"
+                         WidthRequest="25"
+                         Clicked="ButtonPause_Clicked"
+                         IsVisible="False"
+                         Grid.Column="0"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Start"/>
+            <ImageButton Source="next.png"
+                         Clicked="ButtonPlayNext_Clicked"
+                         HeightRequest="25"
+                         WidthRequest="25"
+                         Grid.Column="1"
+                         VerticalOptions="Center"
+                         HorizontalOptions="Start"/>
+            <ImageButton Source="fullscreen.png"
+                         Clicked="ButtonFullScreen_Clicked"
+                         HeightRequest="25"
+                         WidthRequest="25"
+                         Grid.Column="2"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End"/>
+        </Grid>
+        <ListView x:Name="lstvideos"
+                  ItemsSource="{Binding .}"
+                  ItemSelected="Lstvideos_ItemSelected"
+                  HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="10,0,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.4*"/>
+                                <ColumnDefinition Width="0.6*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0"
+                                   Source="{Binding VideoImage}"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Start"
+                                   Aspect="AspectFit"/>
+                            <Label Grid.Column="1"
+                                   VerticalOptions="Center"
+                                   Text="{Binding VideoTitle}"
+                                   HorizontalOptions="Start"
+                                   FontSize="Medium"
+                                   TextColor="Black"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
