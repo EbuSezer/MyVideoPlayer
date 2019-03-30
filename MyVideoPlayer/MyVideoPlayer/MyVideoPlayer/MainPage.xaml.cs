@@ -46,7 +46,7 @@ namespace MyVideoPlayer
         {
             
             index++;
-            if (index > 3)
+            if (index > 4)
             {
                 index = 0;
             }
